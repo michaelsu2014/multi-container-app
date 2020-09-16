@@ -3,23 +3,25 @@ services:
   - docker
 
 before_install:
-  - docker build -t msu/multi-container-app -f ./client/Dockerfile.dev ./client
+  - docker build -t michaelsu/multi-container-app -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run msu/multi-container-app npm test -- --coverage
+  - docker run michaelsu/multi-container-app npm test -- --coverage
 
 after_success:
-  - docker build -t msu/multi-container-app-client ./client
-  - docker build -t msu/multi-container-app-nginx ./nginx
-  - docker build -t msu/multi-container-app-server ./server
-  - docker build -t msu/multi-container-app-worker ./worker
+  # The name before / has to be the docker id.
+  - docker build -t michaelsu/multi-container-app-client ./client
+  - docker build -t michaelsu/multi-container-app-nginx ./nginx
+  - docker build -t michaelsu/multi-container-app-server ./server
+  - docker build -t michaelsu/multi-container-app-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push msu/multi-container-app-client
-  - docker push msu/multi-container-app-nginx
-  - docker push msu/multi-container-app-server
-  - docker push msu/multi-container-app-worker
+  # docker push yourhubusername/verse_gapminder
+  - docker push michaelsu/multi-container-app-client
+  - docker push michaelsu/multi-container-app-nginx
+  - docker push michaelsu/multi-container-app-server
+  - docker push michaelsu/multi-container-app-worker
 
 #deploy:
 #  provider: elasticbeanstalk
