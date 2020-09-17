@@ -27,11 +27,11 @@ deploy:
   edge: true
   provider: elasticbeanstalk
   region: ap-southeast-2
-  app: multi-container-app
-  env: MultiContainerApp-env
+  app: multi-container-app-1
+  env: MultiContainerApp1-env
   bucket_name: elasticbeanstalk-ap-southeast-2-867232853968
-  bucket_path: multi-container-app
+  bucket_path: multi-container-app-1
   on:
     branch: master
-  access_key_id: "$AWS_ACCESS_KEY"
-  secret_access_key: "$AWS_SECRET_KEY"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
